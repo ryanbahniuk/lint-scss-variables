@@ -21,13 +21,63 @@ describe('LintScssVariables', function() {
 
       it('throws when a defined variable is not being used', function() {
         assert.throws(function() {
-          lintScssVariables([variablePathOne], [incompletePath]);
+          lintScssVariables(
+            [
+              {
+                src: variablePathOne
+              }
+            ],
+            [incompletePath]
+          );
         });
       });
 
       it('does not throw when all defined variables are being used', function() {
         assert.doesNotThrow(function() {
-          lintScssVariables([variablePathOne], [filePathOne]);
+          lintScssVariables(
+            [
+              {
+                src: variablePathOne
+              }
+            ],
+            [filePathOne]
+          );
+        });
+      });
+    });
+
+    context('when variables are scoped', function() {
+      beforeEach(function() {
+        variablePathOne = path.resolve(__dirname, 'fixtures', 'variables', 'scoped-one.scss');
+        filePathOne = path.resolve(__dirname, 'fixtures', 'files', 'all-one.scss');
+        incompletePath = path.resolve(__dirname, 'fixtures', 'files', 'incomplete-one.scss');
+      });
+
+      it('throws when a defined variable is not being used', function() {
+        assert.throws(function() {
+          lintScssVariables(
+            [
+              {
+                src: variablePathOne,
+                scope: '%scope'
+              }
+            ],
+            [incompletePath]
+          );
+        });
+      });
+
+      it('does not throw when all defined variables are being used', function() {
+        assert.doesNotThrow(function() {
+          lintScssVariables(
+            [
+              {
+                src: variablePathOne,
+                scope: '%scope'
+              }
+            ],
+            [filePathOne]
+          );
         });
       });
     });
@@ -44,13 +94,78 @@ describe('LintScssVariables', function() {
 
       it('throws when a defined variable is not being used', function() {
         assert.throws(function() {
-          lintScssVariables([variablePathOne, variablePathTwo], [incompletePath]);
+          lintScssVariables(
+            [
+              {
+                src: variablePathOne
+              },
+              {
+                src: variablePathTwo
+              }
+            ],
+            [incompletePath]
+          );
         });
       });
 
       it('does not throw when all defined variables are being used', function() {
         assert.doesNotThrow(function() {
-          lintScssVariables([variablePathOne, variablePathTwo], [filePathOne]);
+          lintScssVariables(
+            [
+              {
+                src: variablePathOne
+              },
+              {
+                src: variablePathTwo
+              }
+            ],
+            [filePathOne]
+          );
+        });
+      });
+    });
+
+    context('when variables are scoped', function() {
+      beforeEach(function() {
+        variablePathOne = path.resolve(__dirname, 'fixtures', 'variables', 'scoped-one.scss');
+        variablePathTwo = path.resolve(__dirname, 'fixtures', 'variables', 'scoped-two.scss');
+        filePathOne = path.resolve(__dirname, 'fixtures', 'files', 'all-one-two.scss');
+        incompletePath = path.resolve(__dirname, 'fixtures', 'files', 'all-one.scss');
+      });
+
+      it('throws when a defined variable is not being used', function() {
+        assert.throws(function() {
+          lintScssVariables(
+            [
+              {
+                src: variablePathOne,
+                scope: '%scope'
+              },
+              {
+                src: variablePathTwo,
+                scope: '%scope'
+              }
+            ],
+            [incompletePath]
+          );
+        });
+      });
+
+      it('does not throw when all defined variables are being used', function() {
+        assert.doesNotThrow(function() {
+          lintScssVariables(
+            [
+              {
+                src: variablePathOne,
+                scope: '%scope'
+              },
+              {
+                src: variablePathTwo,
+                scope: '%scope'
+              }
+            ],
+            [filePathOne]
+          );
         });
       });
     });
@@ -67,13 +182,64 @@ describe('LintScssVariables', function() {
 
       it('throws when a defined variable is not being used', function() {
         assert.throws(function() {
-          lintScssVariables([variablePathTwo], [filePathOne, filePathTwo]);
+          lintScssVariables(
+            [
+              {
+                src: variablePathTwo
+              }
+            ],
+            [filePathOne, filePathTwo]
+          );
         });
       });
 
       it('does not throw when all defined variables are being used', function() {
         assert.doesNotThrow(function() {
-          lintScssVariables([variablePathOne], [filePathOne, filePathTwo]);
+          lintScssVariables(
+            [
+              {
+                src: variablePathOne
+              }
+            ],
+            [filePathOne, filePathTwo]
+          );
+        });
+      });
+    });
+
+    context('when variables are scoped', function() {
+      beforeEach(function() {
+        variablePathOne = path.resolve(__dirname, 'fixtures', 'variables', 'scoped-one.scss');
+        variablePathTwo = path.resolve(__dirname, 'fixtures', 'variables', 'scoped-one-two.scss');
+        filePathOne = path.resolve(__dirname, 'fixtures', 'files', 'all-one.scss');
+        filePathTwo = path.resolve(__dirname, 'fixtures', 'files', 'incomplete-one.scss');
+      });
+
+      it('throws when a defined variable is not being used', function() {
+        assert.throws(function() {
+          lintScssVariables(
+            [
+              {
+                src: variablePathTwo,
+                scope: '%scope'
+              }
+            ],
+            [filePathOne, filePathTwo]
+          );
+        });
+      });
+
+      it('does not throw when all defined variables are being used', function() {
+        assert.doesNotThrow(function() {
+          lintScssVariables(
+            [
+              {
+                src: variablePathOne,
+                scope: '%scope'
+              }
+            ],
+            [filePathOne, filePathTwo]
+          );
         });
       });
     });
@@ -91,13 +257,79 @@ describe('LintScssVariables', function() {
 
       it('throws when a defined variable is not being used', function() {
         assert.throws(function() {
-          lintScssVariables([variablePathOne, variablePathTwo], [filePathOne, incompletePath]);
+          lintScssVariables(
+            [
+              {
+                src: variablePathOne
+              },
+              {
+                src: variablePathTwo
+              }
+            ],
+            [filePathOne, incompletePath]
+          );
         });
       });
 
       it('does not throw when all defined variables are being used', function() {
         assert.doesNotThrow(function() {
-          lintScssVariables([variablePathOne, variablePathTwo], [filePathOne, filePathTwo]);
+          lintScssVariables(
+            [
+              {
+                src: variablePathOne
+              },
+              {
+                src: variablePathTwo
+              }
+            ],
+            [filePathOne, filePathTwo]
+          );
+        });
+      });
+    });
+
+    context('when variables are scoped', function() {
+      beforeEach(function() {
+        variablePathOne = path.resolve(__dirname, 'fixtures', 'variables', 'scoped-one.scss');
+        variablePathTwo = path.resolve(__dirname, 'fixtures', 'variables', 'scoped-two.scss');
+        filePathOne = path.resolve(__dirname, 'fixtures', 'files', 'all-one.scss');
+        filePathTwo = path.resolve(__dirname, 'fixtures', 'files', 'all-two.scss');
+        incompletePath = path.resolve(__dirname, 'fixtures', 'files', 'incomplete-one.scss');
+      });
+
+      it('throws when a defined variable is not being used', function() {
+        assert.throws(function() {
+          lintScssVariables(
+            [
+              {
+                src: variablePathOne,
+                scope: '%scope'
+              },
+              {
+                src: variablePathTwo,
+                scope: '%scope'
+              }
+            ],
+            [filePathOne, incompletePath]
+          );
+        });
+      });
+
+      it('does not throw when all defined variables are being used', function() {
+        assert.doesNotThrow(function() {
+          lintScssVariables(
+            [
+              {
+                src: variablePathOne,
+                scope: '%scope'
+              },
+              {
+                src: variablePathTwo,
+                scope: '%scope'
+              }
+            ],
+            [filePathOne, filePathTwo]
+          );
         });
       });
     });

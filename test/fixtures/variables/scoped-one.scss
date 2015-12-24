@@ -1,0 +1,8 @@
+%scope {
+  $white: #fff !global;
+  $black: #000 !global;
+}
+
+html {
+  @extend %scope;
+}
