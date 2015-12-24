@@ -25,7 +25,7 @@ describe('LintScssVariables', function() {
           lintScssVariables(
             [
               {
-                src: variablePathOne
+                path: variablePathOne
               }
             ],
             [incompletePath]
@@ -38,7 +38,7 @@ describe('LintScssVariables', function() {
           lintScssVariables(
             [
               {
-                src: variablePathOne
+                path: variablePathOne
               }
             ],
             [filePathOne]
@@ -59,7 +59,7 @@ describe('LintScssVariables', function() {
           lintScssVariables(
             [
               {
-                src: variablePathOne,
+                path: variablePathOne,
                 scope: '%scope'
               }
             ],
@@ -73,7 +73,7 @@ describe('LintScssVariables', function() {
           lintScssVariables(
             [
               {
-                src: variablePathOne,
+                path: variablePathOne,
                 scope: '%scope'
               }
             ],
@@ -96,7 +96,7 @@ describe('LintScssVariables', function() {
           lintScssVariables(
             [
               {
-                src: variablePathOne,
+                path: variablePathOne,
                 dependencies: [
                   {
                     path: dependencyPath
@@ -114,7 +114,7 @@ describe('LintScssVariables', function() {
           lintScssVariables(
             [
               {
-                src: variablePathOne,
+                path: variablePathOne,
                 dependencies: [
                   {
                     path: dependencyPath
@@ -143,10 +143,10 @@ describe('LintScssVariables', function() {
           lintScssVariables(
             [
               {
-                src: variablePathOne
+                path: variablePathOne
               },
               {
-                src: variablePathTwo
+                path: variablePathTwo
               }
             ],
             [incompletePath]
@@ -159,10 +159,10 @@ describe('LintScssVariables', function() {
           lintScssVariables(
             [
               {
-                src: variablePathOne
+                path: variablePathOne
               },
               {
-                src: variablePathTwo
+                path: variablePathTwo
               }
             ],
             [filePathOne]
@@ -185,7 +185,7 @@ describe('LintScssVariables', function() {
           lintScssVariables(
             [
               {
-                src: variablePathOne,
+                path: variablePathOne,
                 dependencies: [
                   {
                     path: dependencyPath
@@ -193,7 +193,7 @@ describe('LintScssVariables', function() {
                 ]
               },
               {
-                src: variablePathTwo,
+                path: variablePathTwo,
                 dependencies: [
                   {
                     path: dependencyPath
@@ -211,7 +211,7 @@ describe('LintScssVariables', function() {
           lintScssVariables(
             [
               {
-                src: variablePathOne,
+                path: variablePathOne,
                 dependencies: [
                   {
                     path: dependencyPath
@@ -219,7 +219,7 @@ describe('LintScssVariables', function() {
                 ]
               },
               {
-                src: variablePathTwo,
+                path: variablePathTwo,
                 dependencies: [
                   {
                     path: dependencyPath
@@ -246,11 +246,11 @@ describe('LintScssVariables', function() {
           lintScssVariables(
             [
               {
-                src: variablePathOne,
+                path: variablePathOne,
                 scope: '%scope'
               },
               {
-                src: variablePathTwo,
+                path: variablePathTwo,
                 scope: '%scope'
               }
             ],
@@ -264,11 +264,11 @@ describe('LintScssVariables', function() {
           lintScssVariables(
             [
               {
-                src: variablePathOne,
+                path: variablePathOne,
                 scope: '%scope'
               },
               {
-                src: variablePathTwo,
+                path: variablePathTwo,
                 scope: '%scope'
               }
             ],
@@ -293,7 +293,7 @@ describe('LintScssVariables', function() {
           lintScssVariables(
             [
               {
-                src: variablePathTwo
+                path: variablePathTwo
               }
             ],
             [filePathOne, filePathTwo]
@@ -306,7 +306,7 @@ describe('LintScssVariables', function() {
           lintScssVariables(
             [
               {
-                src: variablePathOne
+                path: variablePathOne
               }
             ],
             [filePathOne, filePathTwo]
@@ -328,7 +328,7 @@ describe('LintScssVariables', function() {
           lintScssVariables(
             [
               {
-                src: variablePathTwo,
+                path: variablePathTwo,
                 scope: '%scope'
               }
             ],
@@ -342,7 +342,7 @@ describe('LintScssVariables', function() {
           lintScssVariables(
             [
               {
-                src: variablePathOne,
+                path: variablePathOne,
                 scope: '%scope'
               }
             ],
@@ -366,7 +366,7 @@ describe('LintScssVariables', function() {
           lintScssVariables(
             [
               {
-                src: variablePathTwo,
+                path: variablePathTwo,
                 dependencies: [
                   {
                     path: dependencyPath
@@ -384,7 +384,7 @@ describe('LintScssVariables', function() {
           lintScssVariables(
             [
               {
-                src: variablePathOne,
+                path: variablePathOne,
                 dependencies: [
                   {
                     path: dependencyPath
@@ -414,10 +414,10 @@ describe('LintScssVariables', function() {
           lintScssVariables(
             [
               {
-                src: variablePathOne
+                path: variablePathOne
               },
               {
-                src: variablePathTwo
+                path: variablePathTwo
               }
             ],
             [filePathOne, incompletePath]
@@ -430,10 +430,10 @@ describe('LintScssVariables', function() {
           lintScssVariables(
             [
               {
-                src: variablePathOne
+                path: variablePathOne
               },
               {
-                src: variablePathTwo
+                path: variablePathTwo
               }
             ],
             [filePathOne, filePathTwo]
@@ -456,11 +456,11 @@ describe('LintScssVariables', function() {
           lintScssVariables(
             [
               {
-                src: variablePathOne,
+                path: variablePathOne,
                 scope: '%scope'
               },
               {
-                src: variablePathTwo,
+                path: variablePathTwo,
                 scope: '%scope'
               }
             ],
@@ -474,11 +474,11 @@ describe('LintScssVariables', function() {
           lintScssVariables(
             [
               {
-                src: variablePathOne,
+                path: variablePathOne,
                 scope: '%scope'
               },
               {
-                src: variablePathTwo,
+                path: variablePathTwo,
                 scope: '%scope'
               }
             ],
@@ -503,7 +503,7 @@ describe('LintScssVariables', function() {
           lintScssVariables(
             [
               {
-                src: variablePathOne,
+                path: variablePathOne,
                 dependencies: [
                   {
                     path: dependencyPath
@@ -511,7 +511,7 @@ describe('LintScssVariables', function() {
                 ]
               },
               {
-                src: variablePathTwo,
+                path: variablePathTwo,
                 dependencies: [
                   {
                     path: dependencyPath
@@ -529,7 +529,7 @@ describe('LintScssVariables', function() {
           lintScssVariables(
             [
               {
-                src: variablePathOne,
+                path: variablePathOne,
                 dependencies: [
                   {
                     path: dependencyPath
@@ -537,7 +537,7 @@ describe('LintScssVariables', function() {
                 ]
               },
               {
-                src: variablePathTwo,
+                path: variablePathTwo,
                 dependencies: [
                   {
                     path: dependencyPath
