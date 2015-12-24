@@ -9,7 +9,9 @@ function getDefinedVariables(variableFiles) {
   var variables = {};
 
   variableFiles.forEach(function(variableFile) {
-    var parsed = scssToJson(variableFile);
+    var parsed = scssToJson(variableFile.src, {
+      scope: variableFile.scope
+    });
     variables = assign(variables, parsed);
   });
 
