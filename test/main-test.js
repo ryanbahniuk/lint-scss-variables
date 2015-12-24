@@ -10,6 +10,7 @@ describe('LintScssVariables', function() {
   var filePathOne;
   var filePathTwo;
   var incompletePath;
+  var dependencyPath;
 
   context('when one variable path and one file path are given ', function() {
     context('when variables are unscoped', function() {
@@ -81,6 +82,51 @@ describe('LintScssVariables', function() {
         });
       });
     });
+
+    context('when variables have dependencies', function() {
+      beforeEach(function() {
+        variablePathOne = path.resolve(__dirname, 'fixtures', 'variables', 'has-dependents-one.scss');
+        dependencyPath = path.resolve(__dirname, 'fixtures', 'variables', 'dependency.scss');
+        filePathOne = path.resolve(__dirname, 'fixtures', 'files', 'all-one.scss');
+        incompletePath = path.resolve(__dirname, 'fixtures', 'files', 'incomplete-one.scss');
+      });
+
+      it('throws when a defined variable is not being used', function() {
+        assert.throws(function() {
+          lintScssVariables(
+            [
+              {
+                src: variablePathOne,
+                dependencies: [
+                  {
+                    path: dependencyPath
+                  }
+                ]
+              }
+            ],
+            [incompletePath]
+          );
+        });
+      });
+
+      it('does not throw when all defined variables are being used', function() {
+        assert.doesNotThrow(function() {
+          lintScssVariables(
+            [
+              {
+                src: variablePathOne,
+                dependencies: [
+                  {
+                    path: dependencyPath
+                  }
+                ]
+              }
+            ],
+            [filePathOne]
+          );
+        });
+      });
+    });
   });
 
   context('when multiple variable paths and one file path are given', function() {
@@ -117,6 +163,68 @@ describe('LintScssVariables', function() {
               },
               {
                 src: variablePathTwo
+              }
+            ],
+            [filePathOne]
+          );
+        });
+      });
+    });
+
+    context('when variables have dependencies', function() {
+      beforeEach(function() {
+        variablePathOne = path.resolve(__dirname, 'fixtures', 'variables', 'has-dependents-one.scss');
+        variablePathTwo = path.resolve(__dirname, 'fixtures', 'variables', 'has-dependents-two.scss');
+        dependencyPath = path.resolve(__dirname, 'fixtures', 'variables', 'dependency.scss');
+        filePathOne = path.resolve(__dirname, 'fixtures', 'files', 'all-one-two.scss');
+        incompletePath = path.resolve(__dirname, 'fixtures', 'files', 'all-one.scss');
+      });
+
+      it('throws when a defined variable is not being used', function() {
+        assert.throws(function() {
+          lintScssVariables(
+            [
+              {
+                src: variablePathOne,
+                dependencies: [
+                  {
+                    path: dependencyPath
+                  }
+                ]
+              },
+              {
+                src: variablePathTwo,
+                dependencies: [
+                  {
+                    path: dependencyPath
+                  }
+                ]
+              }
+            ],
+            [incompletePath]
+          );
+        });
+      });
+
+      it('does not throw when all defined variables are being used', function() {
+        assert.doesNotThrow(function() {
+          lintScssVariables(
+            [
+              {
+                src: variablePathOne,
+                dependencies: [
+                  {
+                    path: dependencyPath
+                  }
+                ]
+              },
+              {
+                src: variablePathTwo,
+                dependencies: [
+                  {
+                    path: dependencyPath
+                  }
+                ]
               }
             ],
             [filePathOne]
@@ -243,6 +351,52 @@ describe('LintScssVariables', function() {
         });
       });
     });
+
+    context('when variables have dependencies', function() {
+      beforeEach(function() {
+        variablePathOne = path.resolve(__dirname, 'fixtures', 'variables', 'has-dependents-one.scss');
+        variablePathTwo = path.resolve(__dirname, 'fixtures', 'variables', 'has-dependents-one-two.scss');
+        dependencyPath = path.resolve(__dirname, 'fixtures', 'variables', 'dependency.scss');
+        filePathOne = path.resolve(__dirname, 'fixtures', 'files', 'all-one.scss');
+        filePathTwo = path.resolve(__dirname, 'fixtures', 'files', 'incomplete-one.scss');
+      });
+
+      it('throws when a defined variable is not being used', function() {
+        assert.throws(function() {
+          lintScssVariables(
+            [
+              {
+                src: variablePathTwo,
+                dependencies: [
+                  {
+                    path: dependencyPath
+                  }
+                ]
+              }
+            ],
+            [filePathOne, filePathTwo]
+          );
+        });
+      });
+
+      it('does not throw when all defined variables are being used', function() {
+        assert.doesNotThrow(function() {
+          lintScssVariables(
+            [
+              {
+                src: variablePathOne,
+                dependencies: [
+                  {
+                    path: dependencyPath
+                  }
+                ]
+              }
+            ],
+            [filePathOne, filePathTwo]
+          );
+        });
+      });
+    });
   });
 
   context('when multiple variable paths and multiple file paths are given', function() {
@@ -326,6 +480,69 @@ describe('LintScssVariables', function() {
               {
                 src: variablePathTwo,
                 scope: '%scope'
+              }
+            ],
+            [filePathOne, filePathTwo]
+          );
+        });
+      });
+    });
+
+    context('when variables have dependencies', function() {
+      beforeEach(function() {
+        variablePathOne = path.resolve(__dirname, 'fixtures', 'variables', 'has-dependents-one.scss');
+        variablePathTwo = path.resolve(__dirname, 'fixtures', 'variables', 'has-dependents-two.scss');
+        dependencyPath = path.resolve(__dirname, 'fixtures', 'variables', 'dependency.scss');
+        filePathOne = path.resolve(__dirname, 'fixtures', 'files', 'all-one.scss');
+        filePathTwo = path.resolve(__dirname, 'fixtures', 'files', 'all-two.scss');
+        incompletePath = path.resolve(__dirname, 'fixtures', 'files', 'incomplete-one.scss');
+      });
+
+      it('throws when a defined variable is not being used', function() {
+        assert.throws(function() {
+          lintScssVariables(
+            [
+              {
+                src: variablePathOne,
+                dependencies: [
+                  {
+                    path: dependencyPath
+                  }
+                ]
+              },
+              {
+                src: variablePathTwo,
+                dependencies: [
+                  {
+                    path: dependencyPath
+                  }
+                ]
+              }
+            ],
+            [filePathOne, incompletePath]
+          );
+        });
+      });
+
+      it('does not throw when all defined variables are being used', function() {
+        assert.doesNotThrow(function() {
+          lintScssVariables(
+            [
+              {
+                src: variablePathOne,
+                dependencies: [
+                  {
+                    path: dependencyPath
+                  }
+                ]
+              },
+              {
+                src: variablePathTwo,
+                dependencies: [
+                  {
+                    path: dependencyPath
+                  }
+                ]
               }
             ],
             [filePathOne, filePathTwo]
