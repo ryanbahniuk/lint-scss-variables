@@ -1,0 +1,51 @@
+{
+  "name": "lint-scss-variables",
+  "version": "0.0.1",
+  "description": "A utility for linting the use of SCSS variables",
+  "homepage": "https://github.com/ryanbahniuk/lint-scss-variables",
+  "keywords": [
+    "scss",
+    "testing",
+    "tdd",
+    "linting",
+    "lint",
+    "variables"
+  ],
+  "author": {
+    "name": "Ryan Bahniuk",
+    "email": "ryan.bahniuk@gmail.com",
+    "url": "http://bahni.uk"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ryanbahniuk/lint-scss-variables.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ryanbahniuk/lint-scss-variables/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/ryanbahniuk/lint-scss-variables/blob/master/LICENSE-MIT"
+    }
+  ],
+  "main": "main.js",
+  "engines": {
+    "node": ">= 0.10.0"
+  },
+  "dependencies": {
+    "chai": "^3.4.1"
+  },
+  "devDependencies": {
+    "eslint": "^1.10.3",
+    "jscs": "^2.7.0",
+    "mocha": "^2.3.4",
+    "object-assign": "^4.0.1",
+    "scss-to-json": "^1.0.1",
+    "wealthfront-javascript": "^2.4.0"
+  },
+  "scripts": {
+    "test": "mocha test/",
+    "pretest": "eslint . & jscs ."
+  }
+}
